@@ -145,7 +145,7 @@
 	                json: views.jsonView
 	            }
 			}],
-			"/api/v1/user/OTP/:mobile/:email": [{
+			"/api/v1/user/OTP/:mobile": [{
 				method: "GET",
 				action: controllers.authenticationController.generateOTP,
 				middleware: [

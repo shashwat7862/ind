@@ -43,9 +43,7 @@ module.exports = (function () {
 
     const generateOTP = function (req, res, callback) {
         const mobile = req.params.mobile;
-        const email = req.params.email;
-
-        this.services.authenticationService.generateOTP(mobile,email, callback);
+        this.services.authenticationService.generateOTP(mobile, callback);
     }
 
     const varifyUserByOTP = function (req, res, callback) {

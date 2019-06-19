@@ -2,10 +2,6 @@ var otpTokenSchema = new mongooseSchema({
     otp: {
         type: Number,
     },
-    email: {
-        type: String,
-         
-    },
     validUpto: {
         type: Date,
         default: Date.now

@@ -151,7 +151,7 @@ class AuthenticatonService extends baseService {
     }
 
 
-    generateOTP(mobile, email, callback) {
+    generateOTP(mobile, callback) {
 
         var availableNumbers = "0123456789";
         var otp = '';
@@ -163,14 +163,13 @@ class AuthenticatonService extends baseService {
         console.log(mobile, "mobile")
         var url = configHolder.config.otpUrl + mobile + "/" + otp
         console.log("Final OTP url", url);
-        request(url, function (err, success) {
+        request(url, function (err) {
             if (err) {
                 callback(err, null)
             } else {
                 // callback(null, success);
                 var otpObj = new domain.Otp({
                     "otp": otp,
-                    email: email,
                     mobileNumber: mobile,
                     countrycode: "+91"
                 });

@@ -5,17 +5,11 @@ module.exports = function () {
 		var self = this;
 		var salt = uuid.v1();
 
-		if (req.body.business_name) {
-			console.log("seller");
-
-			user = new domain.Seller(req.body);
-			user.role = 'ROLE_Seller';
-
-		} else {
+		 
 			console.log("user");
 			user = new domain.User(req.body);
 			user.role = 'ROLE_USER';
-		}
+		
 
 
 		user.salt = salt;

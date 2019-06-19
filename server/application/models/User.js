@@ -10,7 +10,6 @@ const UserSchema = new mongooseSchema({
     email: {
         type: String,
         default: '',
-        required: false,
         trim: true,
         unique: true
     },
@@ -58,13 +57,7 @@ const UserSchema = new mongooseSchema({
     }
 });
 
-UserSchema.pre('findOneAndUpdate', function (next) {
-    if (this.email) {
-        this.email = this.email.toLowerCase();
-    }
-    this.options.runValidators = true;
-    next();
-});
+ 
 
 UserSchema.plugin(mongoose_timestamps);
 UserSchema.plugin(mongoose_softDelete);
@@ -79,24 +72,24 @@ function stringNotNull(obj) {
     return obj.length
 }
 
-UserSchema.pre("save", async function (next) {
-    // convert email to lowercase
-    this.email = this.email.toLowerCase();
+// UserSchema.pre("save", async function (next) {
+//     // convert email to lowercase
+//     this.email = this.email.toLowerCase();
 
-    //check uniqueness of email.
-    const [err, user] = await To(domain.User.findOne({
-        email: this.email
-    }, 'email'));
+//     //check uniqueness of email.
+//     const [err, user] = await To(domain.User.findOne({
+//         email: this.email
+//     }, 'email'));
 
-    if (err) return next(err);
+//     if (err) return next(err);
 
-    if (user) {
-        this.invalidate("email", "email must be unique");
-        return next(new Error("email must be unique"));
-    }
+//     if (user) {
+//         this.invalidate("email", "email must be unique");
+//         return next(new Error("email must be unique"));
+//     }
 
-    next();
-});
+//     next();
+// });
 
 var User = mongoose.model('User', UserSchema);
 module.exports = User
