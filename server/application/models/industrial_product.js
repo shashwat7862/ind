@@ -1,14 +1,14 @@
  var IndustrialProduct = new mongooseSchema({
      category: {
          type: String,
-         default: '',
-         required: true,
+         default: 'Industry',
+         required: false,
          trim: true,
      },
 
      subCategory: {
          type: String,
-         default: '',
+         default: 'Industry Parts',
          required: false,
          trim: true
      },
@@ -34,23 +34,17 @@
      city: {
          type: String,
          trim: true,
-         required: false,
+         required: true,
      },
      pincode: {
          type: Number,
 
          required: false,
      },
-     dealerName: {
-         type: String,
+     mobile: {
+         type: Number,
          trim: true,
          required: true,
-     },
-
-     color: {
-         type: String,
-         default: '',
-         trim: false,
      },
      description: {
          type: String,
@@ -60,7 +54,7 @@
      modelNo: {
          type: String,
          default: '',
-         required: true,
+         required: false,
          trim: true
      },
      isVerfiedByUs:{
@@ -73,7 +67,7 @@
      brandName: {
          type: String,
          default: '',
-         required: true,
+         required: false,
          trim: true
      },
      isBranded: {
