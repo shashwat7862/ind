@@ -21,9 +21,25 @@ class AuthenticatonService extends baseService {
         })
     }
 
+    async login(mobile,callback) {
 
 
-    async login(email, password, callback) {
+        const query = {
+            mobile: mobile
+        }
+
+        const [err, user] = await To(domain.User.findOne(query));
+
+
+
+        if (err || !user) return callback(new Error("Invalid mobile"));
+
+         callback(err,user)
+    }
+
+
+
+    async loginOld(email, password, callback) {
         console.log(email, password);
 
 
@@ -248,10 +264,28 @@ class AuthenticatonService extends baseService {
         // if (errors) return callback(errors,null);
         // if (!otpRemoveDetails) return callback(new Error('RemoveDetails not found'));
 
+        const Userquery = {
+            mobile: mobile
+        }
+
+        const [error, UserData] = await To(domain.User.findOne(Userquery));
+
+        const UserObj = {
+            mobile:mobile,
+            password:otp
+        }
+
+        var token = jwt.sign(UserObj, "4phd7fdjEUewFB0dYRuHyw==", {
+            expiresIn: "1h"
+        });
+        console.log(token)
         callback(null, {
+            authToken: token,
+            userDetails: UserData,
             "otpDetails": otpDetails,
             "otpRemoveDetails": otpRemoveDetails
-        });
+
+        })
     }
 
 

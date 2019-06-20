@@ -24,6 +24,10 @@ class UserService extends BaseService {
         return domain.Query.find(query).select(selectFields);
     }
 
+    findShowInterest(query, selectFields = '') {
+        return domain.ShowInterest.find(query).select(selectFields);
+    }
+
 
     createUser(user, callback) {
         console.log("userObj", user);
@@ -48,6 +52,24 @@ class UserService extends BaseService {
                     userDetails: userObj,
                     authToken: token
                 });
+            }
+        });
+    }
+
+    saveShowinterst(data,callback){
+        console.log("userObj", data);
+
+        let showInterest = new domain.ShowInterest(data);
+
+        showInterest.save((err, obj) => {
+            console.log("obj", obj, err)
+
+            if (err || !obj) {
+                callback(err, null);
+
+            } else {
+
+                callback(err, obj);
             }
         });
     }
@@ -179,6 +201,16 @@ class UserService extends BaseService {
 
     async getQueryList(req, callback) {
         const [err, Query] = await To(this.findQueries({}));
+        callback(err, Query)
+    }
+
+    async getShowInterestList(req, callback) {
+        console.log(req.params.mobile,"req.params.mobile", req.params)
+        let query = req.params.mobile !== 'null' ? {
+            mobile:req.params.mobile
+        } : {}
+        console.log(query,"show interest query")
+        const [err, Query] = await To(this.findShowInterest(query));
         callback(err, Query)
     }
 

@@ -18,10 +18,15 @@ module.exports = (function () {
         this.services.authenticationService.resetPassword(token, newpassword, callback);
     }
 
-    const login = function (req, res, callback) {
+    const loginOld = function (req, res, callback) {
         const email = req.body.email;
         const password = req.body.password;
         this.services.authenticationService.login(email, password, callback);
+    }
+
+    const login = function (req, res, callback) {
+        const mobile = req.body.mobile;
+        this.services.authenticationService.login(mobile, callback);
     }
 
     const sellerlogin = function (req, res, callback) {

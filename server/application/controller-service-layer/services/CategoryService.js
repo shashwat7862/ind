@@ -27,7 +27,7 @@ CategoryService.prototype.saveImage = function (file, callback) {
 
     console.log("file", file);
     var paths = path.join(__dirname, "../../public/productImages/");
-    var imageName = new Date().getTime() + '_' + file.image.originalFilename;
+    var imageName = new Date().getTime() +".jpg"
     var writeFilePath = paths + '/' + imageName;
     fs.readFile(file.image.path, function (err, data) {
         if (err) { } else {

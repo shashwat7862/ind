@@ -90,6 +90,17 @@ module.exports = function () {
 		this.services.userService.saveQuotation(Quotation, callback);
 	}
 
+	var saveShowinterst= function (req, res, callback) {
+		
+		let	ShowInterestData = new domain.ShowInterest(req.body);
+		console.log("Quotation",ShowInterestData);
+		this.services.userService.saveShowinterst(ShowInterestData, callback);
+	}
+
+	var getShowInterestList = function (req, res, callback) {
+		this.services.userService.getShowInterestList(req, callback);
+	}
+
 	var askQuery = function (req, res, callback) {
 		
 		let	Query = new domain.Query(req.body);
@@ -107,11 +118,13 @@ module.exports = function () {
 		userSaveProfileImage,
 		editUserDetails,
 		editSellerDetails,
+		getShowInterestList,
 		getUserList,
 		saveQuotation,
 		askQuery,
 		getSellerList,
 		getQuotationList,
-		getQueryList
+		getQueryList,
+		saveShowinterst
 	}
 };

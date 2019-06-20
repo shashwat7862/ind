@@ -1,7 +1,6 @@
 const login = {
     body: {
-        email: Joi.string().email().required(),
-        password: Joi.string().regex(/[a-zA-Z0-9]{3,30}/).min(6).max(30).required()
+        mobile: Joi.string().alphanum().max(10).required(),
     }
 }
 

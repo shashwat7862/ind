@@ -23,5 +23,6 @@ domain.TaxtileNonBrandedProductDetails = require("../application/models/TaxtileN
 domain.Quotation = require("../application/models/Quotation.js");
 domain.Query = require("../application/models/Query.js");
 domain.Cart = require("../application/models/Cart.js");
+domain.ShowInterest = require("../application/models/ShowInterest.js");
 
 module.exports = domain

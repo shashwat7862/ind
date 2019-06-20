@@ -250,6 +250,22 @@
 					json: views.jsonView
 				}
 			}],
+			"/api/v1/showinterst/saveShowinterst": [{
+				method: "POST",
+				action: controllers.userController.saveShowinterst,
+				middleware: [],
+				views: {
+					json: views.jsonView
+				}
+			}],
+			"/api/v1/getShowInterestList/:mobile": [{
+				method: "GET",
+				action: controllers.userController.getShowInterestList,
+				middleware: [],
+				views: {
+					json: views.jsonView
+				}
+			}],
 			"/api/v1/ContactUs/askQuery": [{
 				method: "POST",
 				action: controllers.userController.askQuery,
