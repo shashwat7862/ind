@@ -10,6 +10,7 @@ const UserSchema = new mongooseSchema({
     email: {
         type: String,
         default: '',
+        required: false,
         trim: true,
         unique: true
     },
@@ -26,34 +27,23 @@ const UserSchema = new mongooseSchema({
         trim: true,
         unique: true
     },
+    deleted:{
+        type:Boolean,
+        required: false,
+        default:false
 
-    password: {
-        type: String,
-        default: '',
-        required: true,
-        trim: true
-    },
-    salt: {
-        type: String,
-        default: '',
-        required: true,
-        trim: true
     },
     isAccountLocked: {
         type: Boolean,
         default: false,
+        required: false,
         trim: true
     },
     isAccountActive: {
         type: Boolean,
+        required: false,
         default: true,
         trim: true
-    },
-    role: {
-        type: String,
-        trim: true,
-        default: 'ROLE_USER',
-        enum: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPERADMIN','ROLE_Seller']
     }
 });
 
@@ -62,11 +52,7 @@ const UserSchema = new mongooseSchema({
 UserSchema.plugin(mongoose_timestamps);
 UserSchema.plugin(mongoose_softDelete);
 
-//configuring different access level for the USER
-UserSchema.plugin(require('mongoose-role'), {
-    roles: configHolder.config.roles,
-    accessLevels: configHolder.config.accessLevels
-});
+ 
 
 function stringNotNull(obj) {
     return obj.length

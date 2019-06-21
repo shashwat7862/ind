@@ -1,32 +1,31 @@
 module.exports = function () {
-	var createUser = function (req, res, callback) {
+	var isUserExixts = function (req, res, callback) {
 		console.log(req.body, "-------------------");
-		var user = null;
-		var self = this;
-		var salt = uuid.v1();
+		this.services.userService.isUserExixts(req.body.mobile, callback);
+		// var salt = uuid.v1();
 
 		 
-			console.log("user");
-			user = new domain.User(req.body);
-			user.role = 'ROLE_USER';
+		// 	console.log("user");
+		// 	user = new domain.User(req.body);
+		// 	user.role = 'ROLE_USER';
 		
 
 
-		user.salt = salt;
-		user.password = configHolder.encryptUtil.encryptPassword(salt, req.body.password);
+		// user.salt = salt;
+		// user.password = configHolder.encryptUtil.encryptPassword(salt, req.body.password);
 
-		console.log(user, "-------------------");
+		// console.log(user, "-------------------");
 
-		user.validate(function (err) {
-			if (err) {
-				Logger.info(err.errors.stack);
-				err.status = 400;
-				callback(err, user);
-			} else {
-				self.services.userService.createUser(user, callback);
+		// user.validate(function (err) {
+		// 	if (err) {
+		// 		Logger.info(err.errors.stack);
+		// 		err.status = 400;
+		// 		callback(err, user);
+		// 	} else {
+		// 		self.services.userService.isUserExixts(user, callback);
 
-			}
-		})
+		// 	}
+		// })
 	}
 
 	var getUser = function (req, res, callback) {
@@ -109,7 +108,7 @@ module.exports = function () {
 	}
 
 	return {
-		createUser,
+		isUserExixts,
 		getUser,
 		updateUser,
 		searchUser,

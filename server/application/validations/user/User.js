@@ -2,7 +2,7 @@ const createUser = {
     body: {
         fullName: Joi.string().min(3).max(30).required(),
         mobile: Joi.number().min(10).required(),
-        password: Joi.string().regex(/[a-zA-Z0-9]{3,30}/).min(6).max(30).required()
+        // password: Joi.string().regex(/[a-zA-Z0-9]{3,30}/).min(6).max(30).required()
     }
 }
 

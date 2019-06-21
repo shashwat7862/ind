@@ -25,9 +25,10 @@ ErrorView.prototype.render = function(req, res, error) {
 		var date = new Date();
 		res.send({
                 error: true,
-			    object:null,
-			    message:outError.message,
-			    extendedMessage:outError.errors,
+                status:outError.status,
+			    object:error,
+			    message:error.msg,
+			    extendedMessage:error.msg,
 			    timeStamp:date.getTime()
             },outError.status)
         /*if (req.accepts("json")) {

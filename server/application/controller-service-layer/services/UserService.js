@@ -29,31 +29,49 @@ class UserService extends BaseService {
     }
 
 
-    createUser(user, callback) {
-        console.log("userObj", user);
+    async isUserExixts(_mobile, callback) {
+        console.log("_mobileObj", _mobile);
 
-        user.save((err, userObj) => {
-            console.log("userObj", userObj, err)
+        const query = {
+            mobile:_mobile,
+            deleted: false
+        }
+        const [err, user] = await To(this.findOneUser(query));
 
-            if (err || !userObj) {
-                callback(err, null);
+        console.log(err,user)
 
-            } else {
-                var loginTokenObj = {
-                    email: userObj.email,
-                    password: userObj.password
-                };
-
-                var token = jwt.sign(loginTokenObj, "4phd7fdjEUewFB0dYRuHyw==", {
-                    expiresIn: "1h"
-                });
-
-                callback(err, {
-                    userDetails: userObj,
-                    authToken: token
-                });
-            }
+        if (err) return callback(err,null);
+        if (!user) return callback(null , {
+            msg:'No User Found'
         });
+
+        callback(null, {
+            msg:"already User registered",
+            userDetails:user
+        });
+
+        // user.save((err, userObj) => {
+        //     console.log("userObj", userObj, err)
+
+        //     if (err || !userObj) {
+        //         callback(err, null);
+
+        //     } else {
+        //         var loginTokenObj = {
+        //             email: userObj.email,
+        //             password: userObj.password
+        //         };
+
+        //         var token = jwt.sign(loginTokenObj, "4phd7fdjEUewFB0dYRuHyw==", {
+        //             expiresIn: "1h"
+        //         });
+
+        //         callback(err, {
+        //             userDetails: userObj,
+        //             authToken: token
+        //         });
+        //     }
+        // });
     }
 
     saveShowinterst(data,callback){

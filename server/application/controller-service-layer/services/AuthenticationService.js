@@ -23,19 +23,29 @@ class AuthenticatonService extends baseService {
 
     async login(mobile,callback) {
 
-
+console.log("!")
         const query = {
             mobile: mobile
         }
 
         const [err, user] = await To(domain.User.findOne(query));
 
+        console.log(err , user,"IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
 
-
-        if (err || !user) return callback(new Error("Invalid mobile"));
-
-         callback(err,user)
-    }
+        if (user != null) {
+           callback(null, {
+            msg:"already User registered",
+            userDetails:user
+        })
+            }else{
+                callback(null,{
+                    msg:"user not found"
+            })
+            }
+            if(err){
+                callback(err,null)
+            }
+            }
 
 
 
@@ -246,12 +256,12 @@ class AuthenticatonService extends baseService {
     }
 
 
-    async varifyUserByOTP(mobile, otp, callback) {
-        console.log("mo", mobile, otp);
+    async varifyUserByOTP(body, callback) {
+        console.log("mo", body , "body",body.mobile, body.otp);
 
         const query = {
-            mobileNumber: mobile,
-            otp: otp,
+            mobileNumber: body.mobile,
+            otp: body.otp,
         }
 
         const [err, otpDetails] = await To(this.findOneOTP(query));
@@ -261,24 +271,37 @@ class AuthenticatonService extends baseService {
         if (err) return callback(err);
         if (!otpDetails) return callback(new Error('No otp found'));
 
-        // if (errors) return callback(errors,null);
-        // if (!otpRemoveDetails) return callback(new Error('RemoveDetails not found'));
 
         const Userquery = {
-            mobile: mobile
+            mobile: body.mobile
         }
+
+        if(!body.isLogin){
+            let user = new domain.User(body.UserData);
+            user.save((err, userObj) => {
+                console.log(err,userObj,"_______+++++++++++++++______________")
+            if (err || !userObj) {
+                callback(err, null);
+            } else {
+               console.log(userObj)
+            }
+        });
+        }
+
+        console.log(Userquery, body , "+++++++++++++++++++++++++_____________________")
 
         const [error, UserData] = await To(domain.User.findOne(Userquery));
 
+
         const UserObj = {
-            mobile:mobile,
-            password:otp
+            mobile:body.mobile,
+            password:body.otp
         }
 
         var token = jwt.sign(UserObj, "4phd7fdjEUewFB0dYRuHyw==", {
             expiresIn: "1h"
         });
-        console.log(token)
+        console.log(token,UserData)
         callback(null, {
             authToken: token,
             userDetails: UserData,

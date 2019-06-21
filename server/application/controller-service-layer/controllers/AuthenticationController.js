@@ -52,9 +52,7 @@ module.exports = (function () {
     }
 
     const varifyUserByOTP = function (req, res, callback) {
-        const mobile = req.params.mobile;
-        const otp = req.params.otp;
-        this.services.authenticationService.varifyUserByOTP(mobile,otp, callback);
+        this.services.authenticationService.varifyUserByOTP(req.body, callback);
     }
 
     return {

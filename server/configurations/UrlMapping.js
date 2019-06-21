@@ -5,7 +5,7 @@
 	    return {
 	        "/api/v1/user": [{
 	            method: "POST",
-	            action: controllers.userController.createUser,
+	            action: controllers.userController.isUserExixts,
 	            middleware: [
 	                validate(validationSchema.user.createUser)
 	            ],
@@ -104,7 +104,7 @@
 	            method: "POST",
 	            action: controllers.authenticationController.login,
 	            middleware: [
-	                validate(validationSchema.authentication.login)
+	                // validate(validationSchema.authentication.login)
 	            ],
 	            views: {
 	                json: views.jsonView
@@ -156,8 +156,8 @@
 					json: views.jsonView
 				}
 			}],
-			"/api/v1/userapi/varifyUserByOTP/:mobile/:otp": [{
-				method: "GET",
+			"/api/v1/userapi/varifyUserByOTP": [{
+				method: "POST",
 				action: controllers.authenticationController.varifyUserByOTP,
 				middleware: [
 					// configHolder.security.authority('anonymous'),
