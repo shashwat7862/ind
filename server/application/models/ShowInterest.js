@@ -10,6 +10,7 @@ var ShowInterest = new mongooseSchema({
         type: String,
         required: true,
         trim: true,
+        ref:'industrialProduct'
     },
      
     city: {

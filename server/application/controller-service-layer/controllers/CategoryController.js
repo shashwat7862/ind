@@ -171,6 +171,16 @@ module.exports = function() {
 
     
 
+    var saveQuery = function(req, res, callback) {
+        if (req.body) {
+        var productData = new domain['Query'](req.body);
+        this.services.categoryService.saveQuery(productData, callback);
+        }
+    }
+
+    
+    
+
 
 
 
@@ -185,6 +195,7 @@ module.exports = function() {
         fetchProductList,
         addToMyGodam,
         fetchAddToMyGodamList,
-        getProductDetails
+        getProductDetails,
+        saveQuery
     }
 };

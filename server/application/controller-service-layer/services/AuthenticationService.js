@@ -351,7 +351,7 @@ console.log("!")
      * If user exists, reset the password
      * finally, delete the token.
      */
-    async resetPassword(token, newPassword, callback) {
+    async resetPassword(mobile, callback) {
         try {
             const tokenObj = await this.findUserThroughToken(token);
 

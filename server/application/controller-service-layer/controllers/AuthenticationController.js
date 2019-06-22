@@ -13,9 +13,8 @@ module.exports = (function () {
     }
 
     const resetPassword = function (req, res, callback) {
-        const token = req.params.token;
-        const newpassword = req.body.newpassword;
-        this.services.authenticationService.resetPassword(token, newpassword, callback);
+        const newpassword = req.body.mobile;
+        this.services.authenticationService.resetPassword(mobile, callback);
     }
 
     const loginOld = function (req, res, callback) {

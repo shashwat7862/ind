@@ -83,6 +83,9 @@
          default:0,
          trim:true,
          required:true
+     },approval:{
+         type:Boolean,
+         required:false
      }
  });
 

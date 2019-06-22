@@ -185,6 +185,24 @@ console.log(id,"id")
     });
 }
 
+CategoryService.prototype.saveQuery = function (queryDetails, callback) {
+
+    queryDetails.save((err, savedqueryDetails) => {
+        console.log("savedqueryDetails", savedqueryDetails, err)
+
+        if (err || !savedqueryDetails) {
+            callback(err, null);
+
+        } else {
+            callback(err, {
+                response: savedqueryDetails,
+                msg: "Query Save Successfully"
+            });
+        }
+    });
+}
+
+
 
 
 

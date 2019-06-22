@@ -25,7 +25,7 @@ class UserService extends BaseService {
     }
 
     findShowInterest(query, selectFields = '') {
-        return domain.ShowInterest.find(query).select(selectFields);
+        return domain.ShowInterest.find(query).select(selectFields).populate('productId')
     }
 
 

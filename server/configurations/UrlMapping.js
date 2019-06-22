@@ -5,7 +5,7 @@
 	    return {
 	        "/api/v1/user": [{
 	            method: "POST",
-	            action: controllers.userController.isUserExixts,
+	            action: controllers.userController.createUser,
 	            middleware: [
 	                validate(validationSchema.user.createUser)
 	            ],
@@ -104,7 +104,7 @@
 	            method: "POST",
 	            action: controllers.authenticationController.login,
 	            middleware: [
-	                // validate(validationSchema.authentication.login)
+	                validate(validationSchema.authentication.login)
 	            ],
 	            views: {
 	                json: views.jsonView
@@ -214,6 +214,22 @@
 				method: "POST",
 				action: controllers.userController.userSaveProfileImage,
 				middleware: [multipartMiddleware],
+				views: {
+					json: views.jsonView
+				}
+			}],
+			"/api/v1/product/saveProductDetails": [{
+				method: "POST",
+				action: controllers.categoryController.saveProductDetails,
+				middleware: [],
+				views: {
+					json: views.jsonView
+				}
+			}],
+			"/api/v1/product/saveQuery": [{
+				method: "POST",
+				action: controllers.categoryController.saveQuery,
+				middleware: [],
 				views: {
 					json: views.jsonView
 				}

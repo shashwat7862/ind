@@ -1,19 +1,12 @@
 
 var QuerySchema = new mongooseSchema({
-    name: {
-        type: String,
-        default: '',
-        required: false,
-        trim: true,
-    },
-
-    email: {
+    title: {
         type: String,
         default: '',
         required: true,
         trim: true,
     },
-    query: {
+    description: {
         type: String,
         default: '',
         required: true,
@@ -23,7 +16,12 @@ var QuerySchema = new mongooseSchema({
     mobile: {
         type: Number,
         trim: true,
-        required: false,
+        required: true,
+    },
+    IssueType:{
+        type: String,
+        trim: true,
+        required: true,
     }
     
 });
