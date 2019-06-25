@@ -2,7 +2,7 @@ const UserSchema = new mongooseSchema({
     fullName: {
         type: String,
         default: '',
-        required: true,
+        required: false,
         trim: true,
         validate: [stringNotNull, "First name is required."]
     },
