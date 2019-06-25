@@ -4,7 +4,6 @@ const UserSchema = new mongooseSchema({
         default: '',
         required: false,
         trim: true,
-        validate: [stringNotNull, "First name is required."]
     },
     
     email: {
