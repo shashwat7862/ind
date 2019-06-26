@@ -1,6 +1,6 @@
 const login = {
     body: {
-        mobile: Joi.string().alphanum().max(10).required(),
+        // mobile: Joi.number().max(10).required(),
     }
 }
 
