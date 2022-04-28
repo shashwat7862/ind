@@ -11,7 +11,7 @@
     "node": "8.9.4"
   },
   "dependencies": {
-    "async": "2.6.0",
+    "async": "2.6.4",
     "await-to-js": "^2.0.1",
     "body-parser": "1.14.1",
     "compression": "1.6.0",
